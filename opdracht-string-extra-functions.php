@@ -20,7 +20,9 @@
 
 <!doctype html>
 <html>
-  <head>Opdracht: string extra functions</head>
+  <head>
+    <title>Opdracht: string extra functions</title>
+  </head>
 
   <body>
     <h1>Opdracht: string extra functions deel 1</h1>

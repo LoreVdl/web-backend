@@ -8,7 +8,9 @@
 
 <!doctype html>
 <html>
-  <head>Opdracht: string concatenate</head>
+  <head>
+    <title>Opdracht: string concatenate</title>
+  </head>
 
   <body>
     <h1>Opdracht: string concatenate</h1>

@@ -44,7 +44,9 @@
 
 <!doctype html>
 <html>
-  <head>Opdracht: conditional statements if deel 2</head>
+  <head>
+    <title>Opdracht: conditional statements if deel 2</title>
+  </head>
 
   <body>
     <h1>Opdracht: conditional statements if deel 2</h1>
