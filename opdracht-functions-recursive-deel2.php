@@ -7,7 +7,9 @@
       $kapitaalArray['kapitaal'] += $rentebedrag;
       $kapitaalArray['antwoordArray'][$kapitaalArray['startjaar']] = 'Het nieuwe bedrag is: ' . $kapitaalArray['kapitaal'] . ' euro met als rente ' . $rentebedrag . ' euro';
 
-      ++$kapitaalArray['startJaar'];
+      ++$kapitaalArray['startjaar'];
+
+      print_r($kapitaalArray);
 
       return kapitaalBerekenen($kapitaalArray);
     }
@@ -17,7 +19,7 @@
     }
   }
 
-$hansErfenis = 100000;
+$hansErfenis = 100;
 $rente = 8;
 $aantalJaar = 10;
 
