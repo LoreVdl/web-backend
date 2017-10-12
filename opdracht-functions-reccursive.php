@@ -1,5 +1,5 @@
 <?php
-  $hansErfenis = 100000;
+  $hansErfenis = 100;
   $rente = 8;
   $aantalJaar = 10;
 
