@@ -15,11 +15,11 @@
       <ul>
         <li>
           <label for="email">Email</label>
-          <input type="text" id="email" value="<?= (isset($_SESSION['email']) ? $_SESSION['email'] : '') ?>" required>>
+          <input type="text" id="email" value="<?= (isset($_SESSION['email']) ? $_SESSION['email'] : '') ?>" required>
         </li>
         <li>
           <label for="nickname">Nickname</label>
-          <input type="text" id="nickname" value="<?= (isset($_SESSION['nickname']) ? $_SESSION['nickname'] : '') ?>" required>>
+          <input type="text" id="nickname" value="<?= (isset($_SESSION['nickname']) ? $_SESSION['nickname'] : '') ?>" required>
         </li>
       </ul>
       <input type="submit" value="volgende">
