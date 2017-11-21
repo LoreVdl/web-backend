@@ -1,11 +1,6 @@
 <?php
   session_start();
   var_dump($_SESSION);
-  if(isset($_POST['volgende']))
-  {
-    $_SESSION['email'] = $_POST['email'];
-    $_SESSION['nickname'] = $_POST['nickname'];
-  }
 ?>
 
 <!doctype html>
@@ -17,8 +12,8 @@
     <h1>Opdracht sessions</h1>
     <h2>Registratiegegevens</h2>
     <ul>
-      <li>e-mail: <?= $_SESSION['email']; ?></li>
-      <li>nickname: <?= $_SESSION['nickname']; ?></li>
+      <li>e-mail: <?= $_POST["email"]; ?></li>
+      <li>nickname: <?php echo $_POST["nickname"]; ?></li>
     </ul>
 
     <form action="opdracht-sessions-deel3.php" method="POST">
