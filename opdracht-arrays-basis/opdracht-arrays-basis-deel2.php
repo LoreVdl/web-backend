@@ -12,11 +12,10 @@
     }
   }
 
-  foreach ($cijfers as $number)
+  foreach ($cijfers as $key => $number) // key is positie, number is het cijfer dat op die positie hoort
   {
-    $getal1 = $number+1;
-    $getal2 = $cijfers2[$number];
-
+    $getal1 = $cijfers[$key];
+    $getal2 = $cijfers2[$key];
     $som[] = $getal1 + $getal2;
   }
 ?>
