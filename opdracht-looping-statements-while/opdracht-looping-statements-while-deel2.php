@@ -12,7 +12,7 @@
 
     <ul>
       <?php while ($boodschappenLengte < $aantalBoodschappen):?>
-      
+
         <li><?php echo $boodschappenlijstje[$boodschappenLengte]?></li>
         <?php $boodschappenLengte++ ?>
 
