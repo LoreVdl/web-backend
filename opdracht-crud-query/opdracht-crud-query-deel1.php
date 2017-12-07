@@ -1,6 +1,7 @@
 <?php
 $message = false;
-try {
+try
+{
   $db = new PDO('mysql:host=localhost;dbname=bieren', 'root', '' );
   $queryString = "SELECT * FROM bieren INNER JOIN brouwers ON bieren.brouwernr = brouwers.brouwernr WHERE bieren.naam LIKE 'du%'  AND brouwers.brnaam LIKE '%a%'";
   $statement = $db->prepare($queryString);
@@ -13,9 +14,10 @@ try {
   }
 
 }
+
 catch (PDOException $e)
 {
-	$message	=	'De connectie is niet gelukt.';
+	$message	=	'De connectie is niet gelukt.' . $e->getMessage();;
 }
  ?>
 
