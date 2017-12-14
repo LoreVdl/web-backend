@@ -14,10 +14,9 @@ try
   }
 
 }
-
 catch (PDOException $e)
 {
-	$message	=	'De connectie is niet gelukt.' . $e->getMessage();;
+	$message	=	'De connectie is niet gelukt. ' . $e->getMessage();;
 }
  ?>
 
