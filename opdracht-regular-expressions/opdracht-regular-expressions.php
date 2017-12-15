@@ -20,17 +20,18 @@
     <ul>
       <li>
           <label for="regex">Regular Expression</label>
-          <input type="text" name="regex" id="regex" value= "<?php $reg ?>">
+          <input type="text" name="regex" id="regex" value= "<?php if (isset($reg)) echo $reg?>">
       </li>
       <li>
           <label for="string">String</label>
-          <textarea name="string" id="string" cols="30" rows="10"><?php $searchString ?></textarea>
+          <textarea name="string" id="string" cols="30" rows="10"><?php if (isset($searchString)) echo $searchString?></textarea>
       </li>
   </ul>
   <input type = "submit" name = "submit" value = "submit">
 
-  <p>Resultaat: <?php echo $resultaat ?></p>
-
+  <?php if (isset($resultaat)) : ?>
+    <p>Resultaat: <?php echo $resultaat ?></p>
+  <?php endif;?>
   </form>
 </body>
 </html>
