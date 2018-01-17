@@ -1,14 +1,1 @@
-{
-	"0": {
-		"username"	:	"jan",
-		"password"	:	"passwoord01"
-	},
-	"1": {
-		"username"	:	"Lore",
-		"password"	:	"test123"
-	},
-	"2": {
-		"username"	:	"Jos",
-		"password"	:	"dulst"
-	}
-}
+jan,paswoord01,

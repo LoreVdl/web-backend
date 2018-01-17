@@ -1,33 +1,42 @@
 <?php
   if (isset($_GET['logout'])) {
     setcookie('authenticated', '', time() -1000);
-    header('location: opdracht-cookies-deel2.php');
+    header('location: opdracht-cookies-deel4.php');
   }
 
-  $filecontent = file_get_contents('opdracht-cookies-deel2.txt');
-  $userdata = explode(',', $filecontent);
+  $filecontent = file_get_contents('opdracht-cookies-deel4.txt');
+  $userdata = JSON_decode($filecontent, true);
   $statusMessage = false;
   $isAtuthenticated = false;
 
   if (!isset($_COOKIE['authenticated'])) {
+
     if (isset($_POST['submit'])) {
-      if($_POST['username'] == $userdata[0] && $_POST['password'] == $userdata[1]) {
-        if (isset($_POST['keepLogged'])) {
-          $cookietime = time() + 30*24*60*60;
+
+      foreach($userdata as $id => $user) {
+
+        if($_POST['username'] == $user["username"] && $_POST['password'] == $user["password"]) {
+
+          if (isset($_POST['keepLogged'])) {
+            $cookietime = time() + 30*24*60*60;
+          }
+
+          else {
+            $cookietime = time() + 3600;
+          }
+
+          setcookie('authenticated', $id, $cookietime);
+          header('location: opdracht-cookies-deel4.php');
+          break;
         }
-        else {
-          $cookietime = time() + 3600;
-        }
-        setcookie('authenticated', true, $cookietime);
-        header('location: opdracht-cookies-deel2.php');
       }
-      else {
-        $statusMessage = 'Gebruikersnaam en/of paswoord niet correct probeer opnieuw.';
-      }
+
+      $statusMessage = 'Gebruikersnaam en/of paswoord niet correct probeer opnieuw.';
     }
   }
   else {
-    $statusMessage = 'U bent ingelogd';
+    $userid = $_COOKIE['authenticated'];
+    $statusMessage = 'Hallo ' . $userdata[$userid]['username'] . ' fijn dat je er weer bent';
     $isAtuthenticated = true;
   }
 ?>
@@ -45,7 +54,7 @@
     <?php endif ?>
 
     <?php if (!$isAtuthenticated): ?>
-      <form action = 'opdracht-cookies-deel2.php' method = 'POST'>
+      <form action = 'opdracht-cookies-deel4.php' method = 'POST'>
         <ul>
           <li>
             <label for = 'username'>Gebruikersnaam: </label>
@@ -66,7 +75,7 @@
         </ul>
       </form>
     <?php else: ?>
-      <a href="opdracht-cookies-deel2.php?logout=true">Uitloggen</a>
+      <a href="opdracht-cookies-deel4.php?logout=true">Uitloggen</a>
     <?php endif ?>
   </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
   if (isset($_GET['logout'])) {
     setcookie('authenticated', '', time() -1000);
-    header('location: opdracht-cookies-deel2.php');
+    header('location: opdracht-cookies-deel3.php');
   }
 
   $filecontent = file_get_contents('opdracht-cookies-deel2.txt');
@@ -19,7 +19,7 @@
           $cookietime = time() + 3600;
         }
         setcookie('authenticated', true, $cookietime);
-        header('location: opdracht-cookies-deel2.php');
+        header('location: opdracht-cookies-deel3.php');
       }
       else {
         $statusMessage = 'Gebruikersnaam en/of paswoord niet correct probeer opnieuw.';
@@ -27,7 +27,7 @@
     }
   }
   else {
-    $statusMessage = 'U bent ingelogd';
+    $statusMessage = 'Hallo ' . $userdata[0] . ' fijn dat je er weer bent';
     $isAtuthenticated = true;
   }
 ?>
@@ -45,7 +45,7 @@
     <?php endif ?>
 
     <?php if (!$isAtuthenticated): ?>
-      <form action = 'opdracht-cookies-deel2.php' method = 'POST'>
+      <form action = 'opdracht-cookies-deel3.php' method = 'POST'>
         <ul>
           <li>
             <label for = 'username'>Gebruikersnaam: </label>
@@ -66,7 +66,7 @@
         </ul>
       </form>
     <?php else: ?>
-      <a href="opdracht-cookies-deel2.php?logout=true">Uitloggen</a>
+      <a href="opdracht-cookies-deel3.php?logout=true">Uitloggen</a>
     <?php endif ?>
   </body>
 </html>
