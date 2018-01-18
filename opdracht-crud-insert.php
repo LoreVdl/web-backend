@@ -1,61 +1,74 @@
 <?php
-$message = '';
-if(isset($_POST['submit']))
-{
-  try
-  {
-    $db = new PDO('mysql:host=localhost;dbname=bieren', 'root', '');
-    $brnaam = $_POST['brnaam'];
-    $adres = $_POST['adres'];
-    $postcode = $_POST['postcode'];
-    $gemeente = $_POST['gemeente'];
-    $omzet = $_POST['omzet'];
-    $queryString = 'INSERT INTO brouwers (brnaam, adres, postcode, gemeente, omzet) VALUES :brnaam, :adres, :postcode, :gemeente, :omzet ';
-    $statement = $db->prepare($queryString);
-    $statement->bindValue(':brnaam', $brnaam);
-    $statement->bindValue(':adres', $adres);
-    $statement->bindValue(':postcode', $postcode);
-    $statement->bindValue(':gemeente', $gemeente);
-    $statement->bindValue(':omzet', $omzet);
-    $statement->execute();
-    $lastID = $db->lastInsertID();
-    $message = "Gelukt! " . $lastID;
-  }
+	$message = false;
+	if (isset($_POST['submit'])) {
+		try {
+			$db = new PDO('mysql:host=localhost;dbname=bieren', 'root', '');
+			$query = "INSERT INTO brouwers (brnaam, adres, postcode, gemeente, omzet) VALUES(:brnaam, :adres, :postcode, :gemeente, :omzet)";
+			$statement = $db->prepare($query);
 
-  catch (PDOException $e)
-  {
-      $message = 'Er ging iets mis: ' . $e->getMessage();
-  }
-}
- ?>
+			$statement -> bindValue(':brnaam', $_POST['brnaam']);
+			$statement -> bindValue(':adres', $_POST['adres']);
+			$statement -> bindValue(':postcode', $_POST['postcode']);
+			$statement -> bindValue(':gemeente', $_POST['gemeente']);
+			$statement -> bindValue(':omzet', $_POST['omzet']);
 
+			$isAdded = $statement->execute();
 
+			if ($isAdded) {
+				$id = $db->lastInsertId();
+				$message = 'Brouwerij succesvol toegevoegd. Het unieke nummer van de brouwerij is ' . $id;
+			}
+			else {
+				$message = 'Er ging iets mis bij het toevoegen. Probeer opnieuw.';
+			}
 
-<!DOCTYPE html>
+		}
+
+		catch (PDOException $e) {
+			$message = 'De connectie is niet gelukt ' . $e->getMessage();
+		}
+	}
+?>
+
+<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../foundation.min.css">
-    <link rel="stylesheet" href="css/master.css">
-    <title>Brouwer Toevoegen</title>
-  </head>
-  <body>
-    <h1>Voeg een brouwer toe</h1>
-    <p><?= $message ?></p>
-    <ul>
-    <form method="post">
-        <li><label for="brnaam">Brouwernaam</label>
-        <input type="text" name="brnaam" value=""></li>
-        <li><label for="adres">adres</label>
-        <input type="text" name="adres" value=""></li>
-        <li><label for="postcode">postcode</label>
-        <input type="text" name="postcode" value=""></li>
-        <li><label for="gemeente">gemeente</label>
-        <input type="text" name="gemeente" value=""></li>
-        <li><label for="omzet">omzet</label>
-        <input type="text" name="omzet" value=""></li>
-        <input class="button" type="submit" name="submit" value="Send">
-      </form>
-    </ul>
-  </body>
+	<head>
+		<title>Opdracht Crud insert</title>
+	</head>
+
+	<body>
+		<?php if($message): ?>
+			<p><?= $message ?></p>
+		<?php endif ?>
+		<form action = 'opdracht-crud-insert.php' method = 'POST'>
+			<ul>
+				<li>
+					<label for = 'brnaam'>Brouwernaam</label>
+					<input type = 'text' name = 'brnaam' id = 'brnaam'>
+				</li>
+
+				<li>
+					<label for = 'adres'>Adres</label>
+					<input type = 'text' name = 'adres' id = 'adres'>
+				</li>
+
+				<li>
+					<label for = 'postcode'>Postcode</label>
+					<input type = 'text' name = 'postcode' id = 'postcode'>
+				</li>
+
+				<li>
+					<label for = 'gemeente'>Gemeente</label>
+					<input type = 'text' name = 'gemeente' id = 'gemeente'>
+				</li>
+
+				<li>
+					<label for = 'omzet'>Omzet</label>
+					<input type = 'text' name = 'omzet' id = 'omzet'>
+				</li>
+			</ul>
+
+			<input type = 'submit' name = 'submit' value = 'Voeg toe'>
+		</form>
+	</body>
 </html>
