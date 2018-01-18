@@ -39,7 +39,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Opdracht Crud query deel 1</title>
+		<title>Opdracht Crud query deel 2</title>
 	</head>
 
 	<body>
