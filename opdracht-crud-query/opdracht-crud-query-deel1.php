@@ -1,36 +1,30 @@
 <?php
-$message = false;
-try
-{
-  $db = new PDO('mysql:host=localhost;dbname=bieren', 'root', '' );
-  $queryString = "SELECT * FROM bieren INNER JOIN brouwers ON bieren.brouwernr = brouwers.brouwernr WHERE bieren.naam LIKE 'du%'  AND brouwers.brnaam LIKE '%a%'";
-  $statement = $db->prepare($queryString);
-  $statement->execute();
-  $bieren = array();
+	$message = '';
+	try {
+		$db = new PDO('mysql:host=localhost;dbname=bieren', 'root', '');
+		$query = "SELECT * FROM bieren INNER JOIN brouwers ON bieren.brouwernr = brouwers.brouwernr WHERE bieren.naam LIKE 'du%' AND brouwers.brnaam LIKE '%a%'";
+		$statement = $db->prepare($query);
+		$statement->execute();
+		$bieren = array();
 
-  while ($row = $statement->fetch(PDO::FETCH_ASSOC))
-  {
-    $bieren[] = $row;
-  }
+		while ($row = $statement->fetch()) {
+			$bieren[] = $row;
+		}
 
-}
-catch (PDOException $e)
-{
-	$message	=	'De connectie is niet gelukt. ' . $e->getMessage();;
-}
- ?>
+	}
+	catch (PDOExcpetion $e) {
+		$message	=	'De connectie is niet gelukt. ' . $e->getMessage();;
+	}
+?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1>Overzicht van Bieren</h1>
+	<head>
+		<title>Opdracht Crud query deel 1</title>
+	</head>
 
-    <p><?= $message ?></p>
-    <table>
+	<body>
+		<table>
       <thead>
         <td>#</td>
         <td>biernr (PK)</td>
@@ -62,5 +56,5 @@ catch (PDOException $e)
         </tbody>
       <?php $i++;endforeach; ?>
     </table>
-  </body>
+	</body>
 </html>

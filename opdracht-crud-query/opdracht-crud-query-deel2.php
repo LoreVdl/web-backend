@@ -1,72 +1,58 @@
 <?php
-try
-{
-  $db = new PDO('mysql:host=localhost;dbname=bieren', 'root', '', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-  $queryString = "SELECT brouwernr, brnaam FROM brouwers";
-  $statement = $db->prepare($queryString);
-  $statement->execute();
-  $bieren = array();
+	$message = '';
+	try {
+		$db = new PDO('mysql:host=localhost;dbname=bieren', 'root', '');
+		$query = "SELECT brouwernr, brnaam FROM brouwers";
+		$statement = $db->prepare($query);
+		$statement->execute();
+		$bieren = array();
 
-  while ($row = $statement->fetch(PDO::FETCH_ASSOC))
-  {
-    $bieren[] = $row;
-  }
-  $message = '';
-}
+		while($row = $statement->fetch()) {
+			$bieren[] = $row;
+		}
+	}
 
-catch (PDOException $e)
-{
-  $message = 'Er ging iets mis: ' . $e->getMessage();
-}
+	catch (PDOException $e) {
+		$message = 'Er ging iets mis: ' . $e->getMessage();
+	}
 
-if(isset($_GET['send']))
-{
-  try
-  {
-    $biermerk = $_GET['biermerk'];
-    $queryString = "SELECT naam FROM bieren WHERE brouwernr = :biermerk";
-    $statement = $db->prepare($queryString);
-    $statement->bindValue(':biermerk', $biermerk);
-    $statement->execute();
-    $bierenArray = array();
+	if (isset($_GET['submit'])) {
+		try {
+			$biermerk = $_GET['biermerk'];
+			$query = "SELECT naam FROM bieren WHERE brouwernr = :biermerk";
+			$statement = $db->prepare($query);
+			$statement->bindValue(':biermerk', $biermerk);
+			$statement->execute();
+			$bierenArray = array();
 
-    while($row = $statement->fetch(PDO::FETCH_ASSOC))
-    {
-      $bierenArray[] = $row;
-    }
-  }
+			while($row = $statement->fetch()) {
+				$bierenArray = $row;
+			}
+		}
 
-  catch (PDOException $e)
-  {
-    $message = 'Er ging iets mis met de tabel: ' . $e->getMessage();
-  }
-}
- ?>
+		catch (PDOException $e) {
+			$message = 'Er ging iets mis met de tabel: ' . $e->getMessage();
+		}
+	}
+?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../foundation.min.css">
-    <link rel="stylesheet" href="css/master.css">
-    <title></title>
-  </head>
-  <body>
-    <h1>Overzicht van Bieren</h1>
+	<head>
+		<title>Opdracht Crud query deel 1</title>
+	</head>
 
-    <p><?= $message ?></p>
-    <form method="get">
-      <div class="row">
-        <select  name="biermerk">
-          <?php foreach($bieren as $row): ?>
-          <option value="<?= $row['brouwernr'] ?>" <?php if(isset($_GET['send']) && $row['brouwernr'] == $_GET['biermerk']): ?> selected <?php endif; ?>><?= $row['brnaam'] ?></option>
-        <?php endforeach; ?>
-        </select>
-        <input type="submit" name="send" value="Geef mij alle bieren van deze brouwerij">
-      </div>
-    </form>
+	<body>
+		<form action = 'opdracht-crud-query-deel2.php' method = 'GET'>
+			<select name = 'biermerk'>
+				<?php foreach($bieren as $row): ?>
+					<option value = "<?php $row['brouwernr'] ?>"<?php if (isset($_GET['submit']) && $row['brouwernr'] == $_GET['biermerk']): ?> selected <?php endif ?>><?= $row['brnaam'] ?> </option>
+				<?php endforeach ?>
+			</select>
+			<input type = 'submit' name = 'submit' value = 'Geef mij alle bieren van deze brouwerij'>
+		</form>
 
-    <?php if(isset($_GET['send'])): ?>
+		<?php if(isset($_GET['submit'])): ?>
       <table>
         <thead>
           <td>Aantal</td>
@@ -86,5 +72,5 @@ if(isset($_GET['send']))
         </tfoot>
       </table>
     <?php endif; ?>
-  </body>
+	</body>
 </html>
