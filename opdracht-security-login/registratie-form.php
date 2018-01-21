@@ -21,7 +21,7 @@
 <!doctype>
 <html>
   <head>
-    <title>Registratie proces>
+    <title>Registratie proces</title>
   </head>
 
   <body>
