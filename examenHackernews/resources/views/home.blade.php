@@ -5,16 +5,14 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">Article overview</div>
 
                 <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
+                  @guest
+                      <p>You are not logged in</p>
+                  @else
+                      <p>You are logged in</p>
+                  @endguest
                 </div>
             </div>
         </div>
