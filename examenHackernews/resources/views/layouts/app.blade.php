@@ -42,7 +42,7 @@
                             <li><a href = '#'>Add article</a></li>
                           @endauth
                         @endif
-                        <li><a href = '#'>Instructies</a></li>
+                        <li><a href = "{{route('instructies')}}">Instructies</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
