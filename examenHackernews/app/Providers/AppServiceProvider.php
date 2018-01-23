@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Hackernews\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

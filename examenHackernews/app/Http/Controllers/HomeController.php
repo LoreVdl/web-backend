@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Hackernews\Http\Controllers;
 
 use Illuminate\Http\Request;
 

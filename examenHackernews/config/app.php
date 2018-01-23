@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Hackernews'),
 
     /*
     |--------------------------------------------------------------------------
@@ -171,11 +171,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Hackernews\Providers\AppServiceProvider::class,
+        Hackernews\Providers\AuthServiceProvider::class,
+        // Hackernews\Providers\BroadcastServiceProvider::class,
+        Hackernews\Providers\EventServiceProvider::class,
+        Hackernews\Providers\RouteServiceProvider::class,
 
     ],
 
