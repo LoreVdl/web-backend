@@ -12,7 +12,9 @@
             <div class = 'panel-heading'>Add article</div>
 
             <div class = 'panel-content'>
-              <form class = 'form-horizontal'>
+              <form class = 'form-horizontal' action = "{{route('insertArticle')}}" method = 'POST'>
+                {{ csrf_field() }}
+
                 <div class = 'form-group'>
                   <label class = 'col-sm-4 control-label' for = 'articleTitle'>Title (max. 255 character)</label>
 

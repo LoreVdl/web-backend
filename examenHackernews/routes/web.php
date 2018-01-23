@@ -12,7 +12,9 @@
 */
 
 Auth::routes();
-route::get('/', 'ArticlesController@index')->name('/'); 
+route::get('/', 'ArticlesController@index')->name('/');
 Route::get('/home', 'ArticlesController@index')->name('home');
 Route::get('/instructies', 'InstructieController@showInstructies')->name('instructies');
-Route::get('/article/addArticle', 'ArticlesController@addArticle')->name('addArticle');
+
+Route::get('/article/add', 'ArticlesController@addArticle')->middleware('auth')->name('addArticle');
+Route::post('/article/insert', 'ArticlesController@insertArticle')->name('insertArticle');

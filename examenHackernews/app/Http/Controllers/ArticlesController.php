@@ -22,8 +22,19 @@ class ArticlesController extends Controller
 
     public function addArticle()
     {
-      $this->middleware('auth');
       return view('addArticle');
     }
-    
+
+    public function insertArticle(Request $request)
+    {
+      $article = new Article;
+
+      $article->title = $request->articleTitle;
+      $article->url = $request->articleUrl;
+      $article->user_id = auth()->user()->id;
+      $article->save();
+
+      return redirect('/');
+    }
+
 }
