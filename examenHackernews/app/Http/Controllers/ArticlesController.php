@@ -25,4 +25,5 @@ class ArticlesController extends Controller
       $this->middleware('auth');
       return view('addArticle');
     }
+    
 }
