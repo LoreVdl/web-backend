@@ -2,9 +2,10 @@
 
 namespace Hackernews\Http\Controllers;
 
+use Hackernews\Article;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class ArticlesController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $articles = Article::all();
+        return view('home', compact('articles'));
     }
 }
