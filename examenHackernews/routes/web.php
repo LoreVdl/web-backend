@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
 Auth::routes();
+route::get('/', 'ArticlesController@index')->name('/'); 
 Route::get('/home', 'ArticlesController@index')->name('home');
 Route::get('/instructies', 'InstructieController@showInstructies')->name('instructies');
+Route::get('/article/addArticle', 'ArticlesController@addArticle')->name('addArticle');

@@ -43,7 +43,7 @@
                         <li><a href = "{{route('home')}}">Home</a></li>
                         @if (Route::has('login'))
                           @auth
-                            <li><a href = '#'>Add article</a></li>
+                            <li><a href = "{{ route('addArticle') }}">Add article</a></li>
                           @endauth
                         @endif
                         <li><a href = "{{route('instructies')}}">Instructies</a></li>

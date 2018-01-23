@@ -7,15 +7,7 @@ use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     /**
      * Show the application dashboard.
@@ -26,5 +18,11 @@ class ArticlesController extends Controller
     {
         $articles = Article::all();
         return view('home', compact('articles'));
+    }
+
+    public function addArticle()
+    {
+      $this->middleware('auth');
+      return view('addArticle');
     }
 }
