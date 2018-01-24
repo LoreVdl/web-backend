@@ -36,6 +36,6 @@ class CommentsController extends Controller
        $comment->body = $request->commentBody;
        $comment->article_id = $id;
        $comment->save();
-       return redirect()->back();
+       return redirect()->back()->with('success', 'Your comment is added successfully!');
      }
 }

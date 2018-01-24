@@ -11,6 +11,12 @@
               @endforeach
             </div>
           @endif
+
+          @if(session('success'))
+            <div class="alert alert-success">
+              {{ session('success') }}
+            </div>
+          @endif
             <div class="panel panel-default">
                 <div class="panel-heading space-between">Article overview</div>
 

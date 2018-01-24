@@ -35,7 +35,7 @@ class ArticlesController extends Controller
       $article->user_id = auth()->user()->id;
       $article->save();
 
-      return redirect('/');
+      return redirect('/')->with('success', 'You article "' . $article->title . '" has posted succesfully!');
     }
 
     public function editArticle($id)

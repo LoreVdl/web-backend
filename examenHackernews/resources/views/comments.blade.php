@@ -15,6 +15,12 @@
             </div>
           @endif
 
+          @if(session('success'))
+            <div class="alert alert-success">
+              {{ session('success') }}
+            </div>
+          @endif
+
           <div class = 'breadcrumb'>
             <a href = "{{route('/')}}"> ← back to overview</a>
           </div>
