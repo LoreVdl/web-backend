@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading space-between">Article overview</div>
 
@@ -27,7 +27,13 @@
                           </div>
 
                           <div class = 'info'>
-                            <div> {{ $article->votes}} points | posted  by {{$article->user->name}} | <a href = "comments/{{ $article->id }}"> {{$article->comment->count()}} comments </a></div>
+                            <div> {{ $article->votes}} points | posted  by {{$article->user->name}} | <a href = "comments/{{ $article->id }}"> {{$article->comment->count()}}
+                              @if ($article->comment->count() == 1)
+                                comment
+                              @else
+                                comments
+                              @endif
+                            </a></div>
                           </li>
                         @endforeach
                       @else

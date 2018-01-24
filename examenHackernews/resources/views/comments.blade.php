@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-2">
 
           <div class = 'breadcrumb'>
             <a href = "{{route('/')}}"> ← back to overview</a>
@@ -28,7 +28,13 @@
                   </div>
 
                   <div class = 'info'>
-                    <div> {{ $article->votes}} points | posted  by {{$article->user->name}} | <a href = "comments/{{ $article->id }}"> {{$article->comment->count()}} comments </a></div>
+                    <div> {{ $article->votes}} points | posted  by {{$article->user->name}} | {{$article->comment->count()}}
+                      @if ($article->comment->count() == 1)
+                        comment
+                      @else
+                        comments
+                      @endif
+                    </div>
                   </div>
 
                   <div class = 'comments'>
@@ -47,6 +53,27 @@
 
                     @guest
                       <div><p>You need to be <a href = "/login">logged in </a>to comment</p></div>
+
+                    @else
+                      <form class = 'form-horizontal' action = "insert/{{ $article->id }}" method = 'POST'>
+                        {{ csrf_field() }}
+
+                        <div class = 'form-group'>
+                          <label class = 'col-sm-3 control-label' for = 'commentBody'>Comment</label>
+
+                          <div class = 'col-sm-6'>
+                            <textarea class = 'form-control' type = 'text' name = 'commentBody' id = 'commentBody'></textarea>
+                          </div>
+                        </div>
+                        <div class = 'form-group'>
+                          <div class = 'col-sm-offset-3 col-sm-6'>
+                            <button class = 'btn btn-default' type = 'submit'>
+                              <i class = 'fa fa-plus'></i>
+                              Add comment
+                            </button>
+                          </div>
+                        </div>
+                      </form>
                     @endguest
                   </div>
                 </div>

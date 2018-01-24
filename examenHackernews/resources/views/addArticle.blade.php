@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-2">
           <div class = 'breadcrumb'>
             <a href = "{{route('/')}}"> ← back to overview</a>
           </div>
@@ -16,7 +16,7 @@
                 {{ csrf_field() }}
 
                 <div class = 'form-group'>
-                  <label class = 'col-sm-4 control-label' for = 'articleTitle'>Title (max. 255 character)</label>
+                  <label class = 'col-sm-3 control-label' for = 'articleTitle'>Title (max. 255 character)</label>
 
                   <div class = 'col-sm-6'>
                     <input class = 'form-control' type = 'text' name = 'articleTitle' id = 'articleTitle'>
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class = 'form-group'>
-                  <label class = 'col-sm-4 control-label' for = 'articleUrl'>URL</label>
+                  <label class = 'col-sm-3 control-label' for = 'articleUrl'>URL</label>
 
                   <div class = 'col-sm-6'>
                     <input class = 'form-control' type = 'text' name = 'articleUrl' id = 'articleUrl'>

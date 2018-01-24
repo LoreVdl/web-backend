@@ -13,17 +13,24 @@ class CommentsController extends Controller
         $data = Article::find($id);
         return $data;
     }
-    
-    public function getComments ($id) {
-        $data = Comment::where('article_id', $id)->get();
-        return $data;
-    }
 
     public function showComments($id)
     {
+        $data = Comment::where('article_id', $id)->get();
         $article = $this->getArticleData($id);
         $user = User::find($id);
 
         return view('comments')->with('article', $article);
     }
+
+    public function create(Request $request, $id)
+     {
+          $user = User::all();
+          $comment = new Comment;
+          $comment->user_id = auth()->user()->id;
+          $comment->body = $request->commentBody;
+          $comment->article_id = $id;
+          $comment->save();
+          return redirect()->back();
+     }
 }
