@@ -4,20 +4,18 @@ namespace Hackernews;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class Comment extends Model
 {
-    protected $primarykey = 'article_id';
+    protected $primarykey = 'comments_id';
     protected $fillable = [
-      'title',
-      'url',
-      'votes'
+      'body',
     ];
 
     public function user() {
         return $this->belongsTo('Hackernews\User');
     }
 
-    public function comment() {
-      return $this->hasMany('Hackernews\Comment');
+    public function article() {
+      return $this->belongsTo('Hackernews\Article');
     }
 }

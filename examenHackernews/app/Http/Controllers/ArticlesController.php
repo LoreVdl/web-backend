@@ -2,18 +2,12 @@
 
 namespace Hackernews\Http\Controllers;
 
+use DB;
 use Hackernews\Article;
 use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
 {
-
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $articles = Article::all();
