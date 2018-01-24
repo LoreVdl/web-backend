@@ -11,13 +11,18 @@
 |
 */
 
-Auth::routes();
-route::get('/', 'ArticlesController@index')->name('/');
-Route::get('/home', 'ArticlesController@index')->name('home');
-Route::get('/instructies', 'InstructieController@showInstructies')->name('instructies');
+Route::group(['middleware' => ['web']], function() {
+  Auth::routes();
+  route::get('/', 'ArticlesController@index')->name('/');
+  Route::get('/home', 'ArticlesController@index')->name('home');
+  Route::get('/instructies', 'InstructieController@showInstructies')->name('instructies');
 
-Route::get('/article/add', 'ArticlesController@addArticle')->middleware('auth')->name('addArticle');
-Route::post('/article/insert', 'ArticlesController@insertArticle')->name('insertArticle');
+  Route::get('/article/add', 'ArticlesController@addArticle')->middleware('auth')->name('addArticle');
+  Route::post('/article/insert', 'ArticlesController@insertArticle')->name('insertArticle');
 
-Route::get('comments/{id}', 'CommentsController@showComments');
-Route::post('/comments/insert/{id}', 'CommentsController@create')->name('insertComment'); 
+  Route::get('comments/{id}', 'CommentsController@showComments');
+  Route::post('/comments/insert/{id}', 'CommentsController@create')->name('insertComment');
+
+  Route::post('vote/up/{id}', 'VotesController@voteUp');
+  Route::post('vote/down/{id}', 'VotesController@voteDown');
+});

@@ -6,6 +6,7 @@ use Hackernews\Article;
 use Hackernews\Comment;
 use Hackernews\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CommentsController extends Controller
 {
@@ -25,12 +26,16 @@ class CommentsController extends Controller
 
     public function create(Request $request, $id)
      {
-          $user = User::all();
-          $comment = new Comment;
-          $comment->user_id = auth()->user()->id;
-          $comment->body = $request->commentBody;
-          $comment->article_id = $id;
-          $comment->save();
-          return redirect()->back();
+       $this->validate($request, [
+         'commentBody' => 'required'
+       ]);
+
+       $user = User::all();
+       $comment = new Comment;
+       $comment->user_id = auth()->user()->id;
+       $comment->body = $request->commentBody;
+       $comment->article_id = $id;
+       $comment->save();
+       return redirect()->back();
      }
 }

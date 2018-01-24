@@ -4,6 +4,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-2">
+          @if (count($errors))
+            <div class = 'alert alert-danger'>
+              <strong>Whoops! Something went wrong</strong>
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }} </li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
 
           <div class = 'breadcrumb'>
             <a href = "{{route('/')}}"> ← back to overview</a>
@@ -18,7 +28,7 @@
                       <i class = 'fa fa-btn fa-caret-up disabled upvote' title = 'You need to be logged in to upvote'></i>
                     </div>
 
-                    <div class = 'form-inline pvote'>
+                    <div class = 'form-inline downvote'>
                       <i class = 'fa fa-btn fa-caret-down disabled downvote' title = 'You need to be logged in to downvote'></i>
                     </div>
                   </div>
