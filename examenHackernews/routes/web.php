@@ -18,3 +18,5 @@ Route::get('/instructies', 'InstructieController@showInstructies')->name('instru
 
 Route::get('/article/add', 'ArticlesController@addArticle')->middleware('auth')->name('addArticle');
 Route::post('/article/insert', 'ArticlesController@insertArticle')->name('insertArticle');
+
+Route::get('comments/{id}', 'CommentsController@showComments'); 

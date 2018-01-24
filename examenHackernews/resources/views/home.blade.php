@@ -27,7 +27,7 @@
                           </div>
 
                           <div class = 'info'>
-                            <div> {{ $article->votes}} points | posted  by {{$article->user->name}} | <a href = "comment/{{ $article->id }}"> {{$article->comment->count()}} comments </a></div>
+                            <div> {{ $article->votes}} points | posted  by {{$article->user->name}} | <a href = "comments/{{ $article->id }}"> {{$article->comment->count()}} comments </a></div>
                           </li>
                         @endforeach
                       @else
@@ -48,7 +48,7 @@
                             </div>
 
                             <div class = 'info'>
-                              <div> {{ $article->votes}} points | posted  by {{$article->user->name}} | <a href = "comment/{{ $article->id }}"> {{$article->comment->count()}} comments </a></div>
+                              <div> {{ $article->votes}} points | posted  by {{$article->user->name}} | <a href = "comments/{{ $article->id }}"> {{$article->comment->count()}} comments </a></div>
                             </li>
                           @endforeach
                       @endguest

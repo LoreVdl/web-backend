@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    protected $primarykey = 'article_id';
     protected $fillable = [
       'title',
       'url',
