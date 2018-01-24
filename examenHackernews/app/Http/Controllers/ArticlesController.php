@@ -10,7 +10,7 @@ class ArticlesController extends Controller
 {
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::all()->sortByDesc("votes");
         return view('home', compact('articles'));
     }
 
