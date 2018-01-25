@@ -67,4 +67,18 @@ class CommentsController extends Controller
        $comment->update($request->all());
        return back()->with('success', 'Your comment is updated successfully!');
      }
+
+     public function showDeleteBox ($id)
+     {
+        $comment        = Comment::find($id);
+        $articleId      = $comment->article_id;
+        return redirect('comments/' . $articleId)->with('danger', 'Are you sure you want to delete this comment?')->with('comment-id', $id);
+      }
+    public function delete ($id)
+    {
+        $comment        = Comment::find($id);
+        $articleId      = $comment->article_id;
+        $comment->delete();
+        return redirect('comments/' . $articleId)->with('success', 'Your comment is removed succesfully!');
+    }
 }

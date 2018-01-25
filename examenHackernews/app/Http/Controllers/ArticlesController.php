@@ -2,7 +2,6 @@
 
 namespace Hackernews\Http\Controllers;
 
-use DB;
 use Auth;
 use Hackernews\Article;
 use Illuminate\Http\Request;
@@ -60,6 +59,28 @@ class ArticlesController extends Controller
 
       $article->update($request->all());
       return redirect('/');
+    }
+
+    public function showConfirm ()
+    {
+        return back()->with('danger', 'Are you sure you wanne delete this item?');
+    }
+
+    public function delete ($id)
+    {
+        $curArticle = Article::find($id);
+
+        if (isset($_POST['delete']))
+        {
+          $curArticle->delete();
+          return redirect('/')->with('success', 'Your article is removed succesfully!');
+        }
+        elseif(isset($_POST['cancel']))
+        {
+          return back(); 
+        }
+
+
     }
 
 }
