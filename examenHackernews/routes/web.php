@@ -22,8 +22,10 @@ Route::group(['middleware' => ['web']], function() {
   Route::get('article/edit/{id}', 'ArticlesController@editArticle')->middleware('auth');
   Route::post('article/edit/{id}', 'ArticlesController@updateArticle')->middleware('auth');
 
-  Route::get('comments/{id}', 'CommentsController@showComments');
+  Route::get('comments/{id}', 'CommentsController@showComments')->name('comments');
   Route::post('/comments/insert/{id}', 'CommentsController@create')->name('insertComment');
+  Route::get('comments/edit/{id}', 'CommentsController@editComment')->middleware('auth');
+  Route::post('comments/edit/{id}', 'CommentsController@updateComment')->middleware('auth');
 
   Route::post('vote/up/{id}', 'VotesController@voteUp');
   Route::post('vote/down/{id}', 'VotesController@voteDown');

@@ -29,19 +29,41 @@
                 <div class="panel-heading space-between">Article: {{$article->title}}</div>
 
                 <div class="panel-content">
-                  <div class = 'vote'>
-                    <div class = 'form-inline upvote'>
-                      <i class = 'fa fa-btn fa-caret-up disabled upvote' title = 'You need to be logged in to upvote'></i>
+                  @if(!(Auth::user()->id == $article->user_id))
+                    <div class = 'vote'>
+                      <div class = 'form-inline upvote'>
+                        <i class = 'fa fa-btn fa-caret-up disabled upvote'></i>
+                      </div>
+
+                      <div class = 'form-inline downvote'>
+                        <i class = 'fa fa-btn fa-caret-down disabled downvote'></i>
+                      </div>
                     </div>
 
-                    <div class = 'form-inline downvote'>
-                      <i class = 'fa fa-btn fa-caret-down disabled downvote' title = 'You need to be logged in to downvote'></i>
+                    <div class = 'url'>
+                      <a href = '{{ $article->url }}' class = 'urlTitle'> {{$article ->title}} </a>
                     </div>
-                  </div>
+                  @else
+                    <div class = 'vote'>
+                      <form class= 'form-inline upvote' action = "vote/up/{{ $article->id }}" method = 'POST'>
+                        {{ csrf_field() }}
+                        <button name = 'voteUp' value = "{{ $article->id }}">
+                          <i class = 'fa fa-btn fa-caret-up' title = 'You need to be logged in to upvote'></i>
+                        </button>
+                      </form>
 
-                  <div class = 'url'>
-                    <a href = '{{ $article->url }}' class = 'urlTitle'> {{$article ->title}} </a>
-                  </div>
+                      <form class= 'form-inline downvote' action = "vote/down/{{ $article->id }}" method = 'POST'>
+                        {{ csrf_field() }}
+                        <button name = 'voteDown' value = "{{ $article->id }}">
+                          <i class = 'fa fa-btn fa-caret-down' title = 'You need to be logged in to upvote'></i>
+                        </button>
+                      </form>
+                    </div>
+
+                    <div class = 'url'>
+                      <a href = '{{ $article->url }}' class = 'urlTitle'> {{$article ->title}} </a>
+                    </div>
+                  @endif
 
                   <div class = 'info'>
                     <div> {{ $article->votes}} points | posted  by {{$article->user->name}} | {{$article->comment->count()}}
@@ -59,7 +81,11 @@
                         @foreach ($article->comment as $comment)
                           <li>
                             <div class = 'comment-body'>{{ $comment -> body}}</div>
-                            <div class = 'comment-info'>Poste by {{$comment -> user -> name}} on {{$comment -> created_at}}</div>
+                            <div class = 'comment-info'>Poste by {{$comment -> user -> name}} on {{$comment -> created_at}}
+                              @if(Auth::user()->id == $comment->user_id)
+                                <a href = 'edit/{{ $comment->id }}' class = 'btn btn-primary btn-xs edit-btn'>edit</a>
+                              @endif
+                            </div>
                           </li>
                         @endforeach
                       </ul>

@@ -55,11 +55,11 @@
                               @if(Auth::user()->id == $article->user_id)
                                 <div class = 'vote'>
                                   <div class = 'form-inline upvote'>
-                                    <i class = 'fa fa-btn fa-caret-up disabled upvote' title = 'You need to be logged in to upvote'></i>
+                                    <i class = 'fa fa-btn fa-caret-up disabled upvote'></i>
                                   </div>
 
                                   <div class = 'form-inline downvote'>
-                                    <i class = 'fa fa-btn fa-caret-down disabled downvote' title = 'You need to be logged in to downvote'></i>
+                                    <i class = 'fa fa-btn fa-caret-down disabled downvote'></i>
                                   </div>
                                 </div>
 
