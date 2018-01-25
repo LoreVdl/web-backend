@@ -72,7 +72,7 @@ class CommentsController extends Controller
      {
         $comment        = Comment::find($id);
         $articleId      = $comment->article_id;
-        return back()->with('danger', 'Are you sure you wanne delete this item?')->with('danger', 'Are you sure you want to delete this comment?')->with('comment-id', $id);
+        return back()->with('danger', 'Are you sure you wanne delete this item?')->with('comment', $comment);
      }
 
      public function delete ($id)

@@ -77,7 +77,7 @@ class ArticlesController extends Controller
         }
         elseif(isset($_POST['cancel']))
         {
-          return back(); 
+          return back();
         }
 
 

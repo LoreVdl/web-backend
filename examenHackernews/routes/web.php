@@ -30,6 +30,8 @@ Route::group(['middleware' => ['web']], function() {
   Route::post('comments/edit/{id}', 'CommentsController@updateComment')->middleware('auth');
   Route::get('comments/edit/{id}/delete', 'CommentsController@showConfirm');
   Route::post('comments/edit/{id}/confirm-delete', 'CommentsController@delete');
+  Route::get('comments/{id}/delete', 'CommentsController@showConfirm');
+  Route::post('comments/{id}/confirm-delete', 'CommentsController@delete');
 
   Route::post('vote/up/{id}', 'VotesController@voteUp');
   Route::post('vote/down/{id}', 'VotesController@voteDown');
