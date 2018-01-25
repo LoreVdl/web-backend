@@ -21,13 +21,30 @@
             </div>
           @endif
 
+          @if(session('danger'))
+            <div class = 'bg-danger clearfix'>
+                {{ session('danger') }}
+
+                  <form class = 'pull-right' action="{{ $comment->id }}/confirm-delete" method="POST">
+                      {{ csrf_field() }}
+                    <button type="submit" class="btn btn-danger" name = "delete">
+                      <i class="fa fa-btn fa-trash"></i> confirm delete
+                    </button>
+
+                    <button type="submit" class="btn" name = "cancel">
+                      <i class="fa fa-btn fa-trash"></i></i> Cancel
+                    </button>
+                  </form>
+                </div>
+          @endif
+
             <div class = 'breadcrumb'>
-              <a href = "{{route('/')}}"> ← back to overview</a>
+              <a href = "../{{$comment->article_id}}"> ← back to overview</a>
             </div>
 
             <div class = 'panel panel-default'>
               <div class = 'panel-heading'>Edit article
-                <a href = '#' class='btn btn-danger btn-xs pull-right'>
+                <a href = '{{ $comment->id }}/delete' class='btn btn-danger btn-xs pull-right'>
                   <i class = 'fa fa-btn fa-trash' title = 'delete'></i>
                   delete
                 </a>

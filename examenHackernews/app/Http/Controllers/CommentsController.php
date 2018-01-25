@@ -68,17 +68,26 @@ class CommentsController extends Controller
        return back()->with('success', 'Your comment is updated successfully!');
      }
 
-     public function showDeleteBox ($id)
+     public function showConfirm ($id)
      {
         $comment        = Comment::find($id);
         $articleId      = $comment->article_id;
-        return redirect('comments/' . $articleId)->with('danger', 'Are you sure you want to delete this comment?')->with('comment-id', $id);
-      }
-    public function delete ($id)
-    {
+        return back()->with('danger', 'Are you sure you wanne delete this item?')->with('danger', 'Are you sure you want to delete this comment?')->with('comment-id', $id);
+     }
+
+     public function delete ($id)
+     {
         $comment        = Comment::find($id);
         $articleId      = $comment->article_id;
-        $comment->delete();
-        return redirect('comments/' . $articleId)->with('success', 'Your comment is removed succesfully!');
-    }
+
+        if (isset($_POST['delete']))
+        {
+          $comment->delete();
+          return redirect('comments/' . $articleId)->with('success', 'Your comment is removed succesfully!');
+        }
+        elseif(isset($_POST['cancel']))
+        {
+          return back();
+        }
+     }
 }

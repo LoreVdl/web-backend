@@ -28,7 +28,8 @@ Route::group(['middleware' => ['web']], function() {
   Route::post('/comments/insert/{id}', 'CommentsController@create')->name('insertComment');
   Route::get('comments/edit/{id}', 'CommentsController@editComment')->middleware('auth');
   Route::post('comments/edit/{id}', 'CommentsController@updateComment')->middleware('auth');
-  Route::get('comments/{id}/delete', 'CommentsController@showDeleteBox');
+  Route::get('comments/edit/{id}/delete', 'CommentsController@showConfirm');
+  Route::post('comments/edit/{id}/confirm-delete', 'CommentsController@delete');
 
   Route::post('vote/up/{id}', 'VotesController@voteUp');
   Route::post('vote/down/{id}', 'VotesController@voteDown');
